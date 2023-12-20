@@ -153,7 +153,7 @@ namespace Opm{
             }
             {
             OPM_TIMEBLOCK(CalculateOutputQuantitesMech);
-            Opm::Elasticity::Vector field;
+            Elasticity::Vector field;
             const auto& grid = simulator_.vanguard().grid();
             const auto& gv = grid.leafGridView();
             static constexpr int dim = Grid::dimension;
@@ -224,7 +224,7 @@ namespace Opm{
         double pressureDiff(unsigned dofIx) const{
             return mechPotentialForce_[dofIx];
         }
-        void setMaterial(const std::vector<std::shared_ptr<Opm::Elasticity::Material>>& materials){
+        void setMaterial(const std::vector<std::shared_ptr<Elasticity::Material>>& materials){
             elacticitysolver_.setMaterial(materials);
         }
         void setMaterial(const std::vector<double>& ymodule,const std::vector<double>& pratio){
@@ -265,7 +265,7 @@ namespace Opm{
         void setStress(const Dune::BlockVector<Dune::FieldVector<double,6> >& stress){
             stress_ = stress;
         }
-        void makeDisplacement(const Opm::Elasticity::Vector& field) {
+        void makeDisplacement(const Elasticity::Vector& field) {
             // make displacement on all nodes used for output to vtk
             const auto& grid = simulator_.vanguard().grid();
             const auto& gv = grid.leafGridView();
@@ -304,7 +304,7 @@ namespace Opm{
         Dune::BlockVector<Dune::FieldVector<double,6> > delstress_;//NB is also stored in esolver
         Dune::BlockVector<Dune::FieldVector<double,6> > strain_;
         //Dune::BCRSMatrix<Dune::FieldMatrix<double,1,1> > A_;
-        Opm::Elasticity::VemElasticitySolver<Grid> elacticitysolver_;
+        Elasticity::VemElasticitySolver<Grid> elacticitysolver_;
     };
 }
 

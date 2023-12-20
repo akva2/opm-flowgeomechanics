@@ -51,8 +51,8 @@ namespace Opm{
             return cartIndex;
         }
 
-        Opm::FaceDir::DirEnum faceToFaceDir(int insideFaceIdx){
-            Opm::FaceDir::DirEnum faceDirection;
+        FaceDir::DirEnum faceToFaceDir(int insideFaceIdx){
+            FaceDir::DirEnum faceDirection;
             switch (insideFaceIdx) {
             case 0:
                 faceDirection = FaceDir::XMinus;
@@ -79,7 +79,7 @@ namespace Opm{
             return faceDirection;
         }
 
-        int faceDirToFace(Opm::FaceDir::DirEnum faceDirection){
+        int faceDirToFace(FaceDir::DirEnum faceDirection){
             int face;
             switch (faceDirection) {
                 case FaceDir::XMinus:
@@ -107,7 +107,7 @@ namespace Opm{
             return face;
         }
 
-        std::array<int,4> faceDirToNodes(Opm::FaceDir::DirEnum faceDirection){
+        std::array<int,4> faceDirToNodes(FaceDir::DirEnum faceDirection){
             std::array<int,4> face;
             switch (faceDirection) {
                 case FaceDir::XMinus:
@@ -170,9 +170,9 @@ namespace Opm{
                             }
 
                             const auto& type = bcprop.bcmechtype;
-                            if (type == Opm::BCMECHType::FREE) {
+                            if (type == BCMECHType::FREE) {
                                 // do nothing
-                            }else if (type == Opm::BCMECHType::FIXED) {
+                            }else if (type == BCMECHType::FIXED) {
                                 std::set<size_t> effected_cells;
                                 for (int i = bcface.i1; i <= bcface.i2; ++i) {
                                     for (int j = bcface.j1; j <= bcface.j2; ++j) {

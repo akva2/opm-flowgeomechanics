@@ -88,7 +88,7 @@ namespace Opm{
                     thermexr_ = fp.get_double("THERMEXR");
                 }
                 for(size_t i=0; i < ymodule_.size(); ++i){
-                    using IsoMat = Opm::Elasticity::Isotropic;
+                    using IsoMat = Elasticity::Isotropic;
                     if(pratio_[i]>0.5 || pratio_[i] < 0.0){
                         OPM_THROW(std::runtime_error,"Pratio not valid");
                     }
@@ -107,11 +107,11 @@ namespace Opm{
                 //const auto& grid = simulator.grid();
                 const auto& cartesianIndexMapper = vanguard.cartesianIndexMapper();
                 //CartesianIndexMapper cartesianIndexMapper(grid);
-                Opm::Elasticity::nodesAtBoundary(bc_nodes_,
-                                                 bcconfigs,
-                                                 bcprops,
-                                                 gv,
-                                                 cartesianIndexMapper);
+                Elasticity::nodesAtBoundary(bc_nodes_,
+                                            bcconfigs,
+                                            bcprops,
+                                            gv,
+                                            cartesianIndexMapper);
 
 
 
@@ -275,8 +275,8 @@ namespace Opm{
         std::vector<double> inittemperature_;
         std::vector<std::tuple<size_t,MechBCValue>> bc_nodes_;
         Dune::BlockVector<Dune::FieldVector<double,6>> initstress_;
-        //std::vector<Opm::Elasticity::Material> elasticparams_;
-        std::vector<std::shared_ptr<Opm::Elasticity::Material>> elasticparams_;
+        //std::vector<Elasticity::Material> elasticparams_;
+        std::vector<std::shared_ptr<Elasticity::Material>> elasticparams_;
         //private:
         //std::unique_ptr<TimeStepper> adaptiveTimeStepping_;
     };

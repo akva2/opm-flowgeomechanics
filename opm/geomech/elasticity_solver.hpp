@@ -108,7 +108,7 @@ class ElasticitySolver
     void setMaterial(const std::vector<double>& ymodule,const std::vector<double>& pratio){
         materials.resize(0);
         for(size_t i=0; i < ymodule.size(); ++i){
-            using IsoMat = Opm::Elasticity::Isotropic;
+            using IsoMat = ::Opm::Elasticity::Isotropic;
             if(pratio[i]>0.5 || pratio[i] < 0){
                 OPM_THROW(std::runtime_error,"Pratio not valid");
             }
@@ -148,7 +148,7 @@ class ElasticitySolver
     }
     
     // //! \param[in] params The linear solver parameters
-    void setupSolver(const Opm::PropertyTree& prm){
+    void setupSolver(const PropertyTree& prm){
         // bool parallel=false;
         // if(parallel){
         //     OPM_THROW(std::runtime_error,"Parallel for mechanics not implemented");

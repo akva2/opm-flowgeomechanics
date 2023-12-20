@@ -139,7 +139,7 @@ class VemElasticitySolver
     void solve();
 
     // //! \param[in] params The linear solver parameters
-    void setupSolver(const Opm::PropertyTree& prm){
+    void setupSolver(const PropertyTree& prm){
         OPM_TIMEBLOCK(setupLinearSolver);
         // bool parallel=false;
         // if(parallel){
