@@ -1,14 +1,15 @@
 #ifndef VEM_UTILS_HPP
 #define VEM_UTILS_HPP
 
-#include <array>
-#include <tuple>
-#include <vector>
 #include <opm/grid/polyhedralgrid.hh>
 #ifdef HAVE_ALUGRID
 #include <dune/alugrid/grid.hh>
 #endif
 #include <opm/geomech/boundaryutils.hh>
+
+#include <array>
+#include <vector>
+
 namespace vem
 {
     using PolyGrid = Dune::PolyhedralGrid<3, 3>;

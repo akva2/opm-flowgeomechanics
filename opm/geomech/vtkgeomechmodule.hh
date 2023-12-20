@@ -27,7 +27,6 @@
 #ifndef VTK_GEOMECH_MODULE_HH
 #define VTK_GEOMECH_MODULE_HH
 
-
 #include <opm/models/io/vtkmultiwriter.hh>
 #include <opm/models/io/baseoutputmodule.hh>
 
@@ -35,10 +34,9 @@
 #include <opm/models/utils/parametersystem.hh>
 #include <opm/models/blackoil/blackoilproperties.hh>
 
-
 #include <dune/common/fvector.hh>
 
-#include <cstdio>
+#include <string>
 
 namespace Opm::Properties {
 

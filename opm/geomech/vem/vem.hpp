@@ -4,6 +4,7 @@
 #include <array>
 #include <tuple>
 #include <vector>
+
 namespace vem
 {
   enum StabilityChoice {

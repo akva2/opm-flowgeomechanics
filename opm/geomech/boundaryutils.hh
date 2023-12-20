@@ -22,9 +22,18 @@
 */
 #ifndef BOUNDARYUTILS_HH
 #define BOUNDARYUTILS_HH
-#include <cstring>
-#include <iostream>
+
+#include <opm/common/ErrorMacros.hpp>
+
 #include <opm/input/eclipse/EclipseState/Grid/FaceDir.hpp>
+#include <opm/input/eclipse/Schedule/BCProp.hpp>
+
+#include <algorithm>
+#include <array>
+#include <cstring>
+#include <set>
+#include <stdexcept>
+
 namespace Opm{
     namespace Elasticity{
         template<int dimension>

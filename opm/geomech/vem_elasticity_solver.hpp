@@ -16,37 +16,21 @@
 #include <opm/common/utility/platform_dependent/disable_warnings.h>
 #include <opm/common/TimingMacros.hpp>
 #include <dune/common/fmatrix.hh>
-#include <opm/common/utility/parameters/ParameterGroup.hpp>
-#include <dune/grid/common/mcmgmapper.hh>
-#include <dune/geometry/quadraturerules.hh>
-#include <dune/istl/ilu.hh>
-#include <dune/istl/solvers.hh>
-#include <dune/istl/preconditioners.hh>
+#include <dune/istl/bvector.hh>
 #include <opm/grid/CpGrid.hpp>
-#include <opm/elasticity/shapefunctions.hpp>
-
 #include <opm/common/utility/platform_dependent/reenable_warnings.h>
 
 #include <opm/elasticity/asmhandler.hpp>
-#include <opm/elasticity/boundarygrid.hh>
-#include <opm/elasticity/elasticity.hpp>
-#include <opm/elasticity/elasticity_preconditioners.hpp>
-#include <opm/elasticity/logutils.hpp>
 #include <opm/elasticity/materials.hh>
-#include <opm/elasticity/matrixops.hpp>
-#include <opm/elasticity/meshcolorizer.hpp>
-#include <opm/elasticity/mpc.hh>
-#include <opm/elasticity/mortar_schur.hpp>
-#include <opm/elasticity/mortar_utils.hpp>
-#include <opm/elasticity/mortar_evaluator.hpp>
-#include <opm/elasticity/mortar_schur_precond.hpp>
-#include <opm/elasticity/uzawa_solver.hpp>
 
-#include <opm/input/eclipse/Parser/Parser.hpp>
-#include <opm/input/eclipse/Deck/Deck.hpp>
 #include <opm/input/eclipse/Schedule/BCProp.hpp>
+
 #include <opm/simulators/linalg/FlexibleSolver.hpp>
-//#include <opm/simulators/linalg/FlexibleSolver_impl.hpp>
+
+#include <cstddef>
+#include <tuple>
+#include <vector>
+
 namespace Opm {
 namespace Elasticity {
 
@@ -371,7 +355,6 @@ class VemElasticitySolver
     Matrix strainmat_;
     Matrix divmat_;   // from cell pressure to active dofs
     //std::vector<std::array<double,6>> stress_;
-
 };
 
 }} // namespace Opm, Elasticity

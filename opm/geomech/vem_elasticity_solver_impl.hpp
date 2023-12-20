@@ -12,18 +12,14 @@
 #ifndef OPM_VEM_ELASTICITY_SOLVER_IMPL_HPP
 #define OPM_VEM_ELASTICITY_SOLVER_IMPL_HPP
 
-#include <iostream>
-
-#ifdef HAVE_OPENMP
-#include <omp.h>
-#endif
-#include <tuple>
-#include <vector>
-#include <algorithm>
 #include <opm/common/TimingMacros.hpp>
-#include <opm/input/eclipse/Deck/DeckKeyword.hpp>
+
 #include <opm/geomech/vem/vem.hpp>
 #include <opm/geomech/vem/vemutils.hpp>
+
+#include <array>
+#include <iostream>
+
 namespace Opm {
 namespace Elasticity {
 
