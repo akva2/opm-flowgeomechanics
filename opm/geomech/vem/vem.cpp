@@ -1,7 +1,4 @@
 #include "vem.hpp"
-
-#include <opm/porsol/common/blas_lapack.hpp>
-
 #include <algorithm>
 #include <array>
 #include <assert.h>
@@ -13,6 +10,10 @@
 #include <numeric>
 #include <set>
 #include <stdexcept>
+
+extern "C" {
+#include <cblas.h>
+}
 
 using namespace std;
 using namespace vem;
@@ -379,14 +380,14 @@ matmul(const double* data1,
     if ((transposed1 ? r1 : c1) != (transposed2 ? c2 : r2))
         throw invalid_argument("Matrices are not compatible for multiplication.");
 
-    double null = 0.0;
-    char T = 'T';
-    char N = 'N';
-    DGEMM(transposed1 ? &T : &N,
-          transposed2 ? &T : &N,
-          &r1, &c1, transposed1 ? &r1 : &c1,
-          &fac, data1, &r1,
-          data2, &r2, &null, result, &r1);
+    int M = transposed1 ? c1 : r1;
+    int N = transposed2 ? r2 : c2;
+    int K = transposed1 ? r1 : c1;
+    cblas_dgemm(CblasRowMajor,
+                transposed1 ? CblasTrans : CblasNoTrans,
+                transposed2 ? CblasTrans : CblasNoTrans,
+                M, N, K, fac, data1, c1,
+                data2, c2, 0.0, result, N);
 }
 
 // ----------------------------------------------------------------------------
